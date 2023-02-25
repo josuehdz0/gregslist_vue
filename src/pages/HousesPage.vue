@@ -5,11 +5,20 @@
         <div class="col-md-4 my-3" v-for="h in houses">
           <HouseCard :house="h" />
         </div>
-
       </div>
-      
+      <div class="row my-2 sticky-bottom" v-if="account.id">
+      <div class="col-12 text-end">
+        <button class="fs-5 btn btn-dark" data-bs-toggle="modal" data-bs-target="#test-modal">
+          + 🏡
+        </button>
+      </div>
+      </div>
     </div>
 
+
+    <Modal id="test-modal" modal-title="Add a House 🏡">
+      <HouseForm />
+    </Modal>
 
   </div>
 </template>
@@ -34,7 +43,7 @@ export default {
     onMounted(()=>{
       getHouses()
     })
-    
+
     return {
       account: computed(()=> AppState.account),
       houses: computed(()=> AppState.houses)

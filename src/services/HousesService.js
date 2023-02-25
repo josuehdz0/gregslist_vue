@@ -8,5 +8,11 @@ class HousesService{
   AppState.houses = res.data
   console.log(AppState.houses);
  }
+
+ async createHouse(houseData){
+  const res = await api.post('auth/api/houses', houseData)
+  AppState.houses.push(res.data)
+  return res.data
+ }
 }
 export const housesService = new HousesService()
